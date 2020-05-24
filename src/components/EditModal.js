@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TextInput, Modal, Alert } from "react-native";
+import { StyleSheet, View, TextInput, Modal } from "react-native";
 import { THEME } from "../theme";
 import { AppButton } from "./ui/AppButton";
 
@@ -12,7 +12,11 @@ const EditModal = ({ value, visible, onCancel, onSave }) => {
       Alert.alert("Don't work");
     }
   };
+  const cancelHandler = () => {
+    setTitle('')
+    onCancel()
 
+  }
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.wrap}>
@@ -24,7 +28,7 @@ const EditModal = ({ value, visible, onCancel, onSave }) => {
           autoCapitalize="none"
         />
         <View style={styles.buttons}>
-          <AppButton onPress={onCancel} color={THEME.DANGER_COLOR}>
+          <AppButton onPress={cancelHandler} color={THEME.DANGER_COLOR}>
             Cancel
           </AppButton>
           <AppButton onPress={onSave}>Save</AppButton>
